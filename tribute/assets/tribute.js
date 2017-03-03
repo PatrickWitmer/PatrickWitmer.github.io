@@ -306,7 +306,7 @@ catch(err) {
 /* jshint ignore:start */
 
 if (!runningTests) {
-  require("tribute/app")["default"].create({"name":"tribute","version":"0.0.0+7d0da196"});
+  require("tribute/app")["default"].create({"name":"tribute","version":"0.0.0+5a7aedd2"});
 }
 
 /* jshint ignore:end */

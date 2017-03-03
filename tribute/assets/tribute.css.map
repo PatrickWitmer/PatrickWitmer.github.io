@@ -3,7 +3,7 @@
 	"file": "tribute.css",
 	"sourceRoot": "/Users/patrickwitmer/Documents/My docs/dota-tribute/app/styles",
 	"sources": [
-		"../../sass_compiler-input_base_path-gdNTN6aD.tmp/app/styles/app.scss"
+		"../../sass_compiler-input_base_path-rktn5ZIn.tmp/app/styles/app.scss"
 	],
 	"sourcesContent": [
 		"$dotaOrange: #ff5422;\n\n// NAV BAR STUFFS\n.navbar {\n  margin-bottom: 0px;\n}\n// END NAV BAR STUFFS\n\nh2 {\n  color: $dotaOrange;\n\n}\n .panel {\n  min-height: calc(100vh - 63px);\n  background-color: lightgrey;\n  border-color: grey;\n  margin-bottom: 0;\n  padding: 0;\n  position: relative;\n  overflow: hidden;\n }\n\n .panel img {\n  height: 100%;\n  position: absolute;\n  top: -9999px;\n  bottom: -9999px;\n  left: -9999px;\n  right: -9999px;\n  margin: auto;\n}\n//Two column paragraphs\n.twoColumns {\n  -webkit-column-gap: 20px;\n  -moz-column-gap: 20px;\n  column-gap: 20px;\n  -webkit-column-count: 2;\n  -moz-column-count: 2;\n  column-count: 2;\n  \n}\n"
