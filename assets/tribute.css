@@ -1,0 +1,33 @@
+.navbar {
+  margin-bottom: 0px; }
+
+h2 {
+  color: #ff5422; }
+
+.panel {
+  min-height: calc(100vh - 63px);
+  background-color: lightgrey;
+  border-color: grey;
+  margin-bottom: 0;
+  padding: 0;
+  position: relative;
+  overflow: hidden; }
+
+.panel img {
+  height: 100%;
+  position: absolute;
+  top: -9999px;
+  bottom: -9999px;
+  left: -9999px;
+  right: -9999px;
+  margin: auto; }
+
+.twoColumns {
+  -webkit-column-gap: 20px;
+  -moz-column-gap: 20px;
+  column-gap: 20px;
+  -webkit-column-count: 2;
+  -moz-column-count: 2;
+  column-count: 2; }
+
+/*# sourceMappingURL=tribute.css.map */
