@@ -1,0 +1,13 @@
+{
+	"version": 3,
+	"file": "tribute.css",
+	"sourceRoot": "C:/Users/veile/Documents/Dev Stuff/dota-tribute/app/styles",
+	"sources": [
+		"../../sass_compiler-input_base_path-g5tjaDmC.tmp/app/styles/app.scss"
+	],
+	"sourcesContent": [
+		"$dotaOrange: #ff5422;\r\n\r\n// NAV BAR STUFFS\r\n.navbar {\r\n  margin-bottom: 0px;\r\n  li {\r\n    margin-top: 4px;\r\n  }\r\n}\r\n// END NAV BAR STUFFS\r\n\r\nh2 {\r\n  color: $dotaOrange;\r\n\r\n}\r\n .panel {\r\n  min-height: calc(100vh - 63px);\r\n  background-color: lightgrey;\r\n  border-color: grey;\r\n  margin-bottom: 0;\r\n  padding: 0;\r\n  position: relative;\r\n  overflow: hidden;\r\n }\r\n\r\n .panel img {\r\n  height: 100%;\r\n  position: absolute;\r\n  top: -9999px;\r\n  bottom: -9999px;\r\n  left: -9999px;\r\n  right: -9999px;\r\n  margin: auto;\r\n}\r\n//Two column paragraphs\r\n.twoColumns {\r\n  -webkit-column-gap: 20px;\r\n  -moz-column-gap: 20px;\r\n  column-gap: 20px;\r\n  -webkit-column-count: 2;\r\n  -moz-column-count: 2;\r\n  column-count: 2;\r\n\r\n}\r\n"
+	],
+	"names": [],
+	"mappings": "AAGA,AAAA,OAAO,CAAC;EACN,aAAa,EAAE,GAAG,GAInB;EALD,AAEE,OAFK,CAEL,EAAE,CAAC;IACD,UAAU,EAAE,GAAG,GAChB;;AAIH,AAAA,EAAE,CAAC;EACD,KAAK,EAZM,OAAO,GAcnB;;AACA,AAAA,MAAM,CAAC;EACN,UAAU,EAAE,kBAAkB;EAC9B,gBAAgB,EAAE,SAAS;EAC3B,YAAY,EAAE,IAAI;EAClB,aAAa,EAAE,CAAC;EAChB,OAAO,EAAE,CAAC;EACV,QAAQ,EAAE,QAAQ;EAClB,QAAQ,EAAE,MAAM,GAChB;;AAED,AAAO,MAAD,CAAC,GAAG,CAAC;EACV,MAAM,EAAE,IAAI;EACZ,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,OAAO;EACZ,MAAM,EAAE,OAAO;EACf,IAAI,EAAE,OAAO;EACb,KAAK,EAAE,OAAO;EACd,MAAM,EAAE,IAAI,GACb;;AAED,AAAA,WAAW,CAAC;EACV,kBAAkB,EAAE,IAAI;EACxB,eAAe,EAAE,IAAI;EACrB,UAAU,EAAE,IAAI;EAChB,oBAAoB,EAAE,CAAC;EACvB,iBAAiB,EAAE,CAAC;EACpB,YAAY,EAAE,CAAC,GAEhB"
+}
