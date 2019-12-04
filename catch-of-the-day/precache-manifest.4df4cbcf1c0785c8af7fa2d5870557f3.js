@@ -20,12 +20,12 @@ self.__precacheManifest = [
     "url": "/catch-of-the-day/static/media/haymaker-webfont.4c3fb584.eot"
   },
   {
-    "revision": "e9535f20ca175cc3fdfe2816f7c47168",
-    "url": "/catch-of-the-day/static/media/haymaker-webfont.e9535f20.ttf"
+    "revision": "751e56274d3ea1c651ea824f902bb987",
+    "url": "/catch-of-the-day/static/media/haymaker-webfont.751e5627.woff"
   },
   {
-    "revision": "47e26dee9b053b540478750bdf7a87d5",
-    "url": "/catch-of-the-day/static/media/haymaker-webfont.47e26dee.svg"
+    "revision": "e9535f20ca175cc3fdfe2816f7c47168",
+    "url": "/catch-of-the-day/static/media/haymaker-webfont.e9535f20.ttf"
   },
   {
     "revision": "73a576a8254aeafebcdc66fe9fd41ac8",
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/catch-of-the-day/static/media/blanch_caps_inline-webfont.1461f8e9.woff"
   },
   {
-    "revision": "751e56274d3ea1c651ea824f902bb987",
-    "url": "/catch-of-the-day/static/media/haymaker-webfont.751e5627.woff"
+    "revision": "47e26dee9b053b540478750bdf7a87d5",
+    "url": "/catch-of-the-day/static/media/haymaker-webfont.47e26dee.svg"
   },
   {
     "revision": "8345e1b3362c1d640f0f11b5aae1d5bc",
