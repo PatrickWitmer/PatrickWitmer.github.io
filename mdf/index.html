@@ -191,6 +191,25 @@
             font-size: 1rem;
         }
 
+        td.link {
+            text-align: center;
+        }
+
+        td.link a {
+            color: var(--accent);
+            display: inline-block;
+        }
+
+        td.link a:hover {
+            transform: scale(1.2);
+        }
+
+        td.notes {
+            color: var(--text);
+            font-style: italic;
+            max-width: 200px;
+        }
+
         .empty {
             color: var(--text);
             text-align: center;
@@ -258,6 +277,8 @@
                 <th data-sort="genre">Genre</th>
                 <th data-sort="location">Location</th>
                 <th data-sort="must_see">Rating</th>
+                <th>MA</th>
+                <th>Notes</th>
             </tr>
         </thead>
         <tbody id="results"></tbody>
@@ -269,99 +290,99 @@
         let sortAsc = true;
 
         const bandsData = [
-            {"band":"Napalm Death","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Hardcore punk (early); Grindcore/Death Metal (later)","location":"United Kingdom","must_see":"2"},
-            {"band":"Repulsion","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Grindcore/Death Metal","location":"United States","must_see":"3"},
-            {"band":"Sinister","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Death Metal","location":"Netherlands","must_see":"2"},
-            {"band":"Monstrosity","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Death Metal","location":"United States","must_see":"3"},
-            {"band":"Organ Dealer","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Grindcore","location":"United States","must_see":"2"},
-            {"band":"Solitude Aeturnus","day":"Thursday May 21, 2026","stage":"Power Plant Live","genre":"Epic Doom Metal","location":"United States","must_see":"3"},
-            {"band":"Novembers Doom","day":"Thursday May 21, 2026","stage":"Power Plant Live","genre":"Melodic Doom/Death Metal","location":"United States","must_see":"2"},
-            {"band":"Windhand","day":"Thursday May 21, 2026","stage":"Power Plant Live","genre":"Stoner/Doom Metal","location":"United States","must_see":"1"},
-            {"band":"Bongzilla","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Sludge/Doom/Stoner","location":"","must_see":"2"},
-            {"band":"Rwake","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Sludge/Doom/Stoner","location":"United States","must_see":"3"},
-            {"band":"Avernus","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Sludge/Death/Gothic Metal","location":"United States","must_see":"2"},
-            {"band":"Lair of the Minotaur","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Thrash/Doom/Sludge Metal","location":"United States","must_see":"3"},
-            {"band":"Black Lung","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Psychedlic Doom","location":"United States","must_see":"3"},
-            {"band":"Torsofuck","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Slam/Brutal Death","location":"Finland","must_see":"2"},
-            {"band":"Putridity","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"Italy","must_see":"3"},
-            {"band":"Cephalotripsy","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Slam/Brutal Death","location":"United States","must_see":"2"},
-            {"band":"Condemned","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3"},
-            {"band":"Emasculator","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"International","must_see":"3"},
-            {"band":"Cerebral Hemorrhage","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3"},
-            {"band":"Old Man's Child","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Symphonic/Melodic Black Metal","location":"Norway","must_see":"1"},
-            {"band":"Rotting Christ 1989-1995","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Melodic Black Metal Gothic Metal","location":"Greece","must_see":"1"},
-            {"band":"The Crown","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Melodic Death/Thrash Metal","location":"Sweden","must_see":"3"},
-            {"band":"Wolfheart","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Melodic Death Metal","location":"Finland","must_see":"1"},
-            {"band":"God Dethroned 35th Anniversary","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Blackened Death Metal","location":"Netherlands","must_see":"2"},
-            {"band":"Cryptic Shift","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Technical Thrash/Death Metal","location":"United Kingdom","must_see":"3"},
-            {"band":"Witch Vomit","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"United States","must_see":"1"},
-            {"band":"Oranssi Pazuzu","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Psychedlic Black Metal","location":"Finland","must_see":"0"},
-            {"band":"Der Weg einer Freiheit","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Germany","must_see":"2"},
-            {"band":"Wayfarer","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Missing Info: Likely Black Metal","location":"","must_see":"3"},
-            {"band":"Pan-Amerikan Native Front","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"United States","must_see":"1"},
-            {"band":"Lömsk","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Sweden","must_see":"1"},
-            {"band":"Lividity","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3"},
-            {"band":"To Violently Vomit She Lay Gutted (Disgorge)","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3"},
-            {"band":"Rottrevore","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Death Metal","location":"United States","must_see":"3"},
-            {"band":"Necrofier","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Melodic Death Metal","location":"United States","must_see":"2"},
-            {"band":"Diabolic Oath","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Black/Death Metal","location":"United States","must_see":"2"},
-            {"band":"Melting Rot","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Grindcore","location":"United States","must_see":"2"},
-            {"band":"Grave Infestation","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Death Metal","location":"Canada","must_see":"3"},
-            {"band":"Tithe","day":"Friday May 22, 2026","stage":"Angels Rock Bar","genre":"Death/Doom/Grindcore","location":"United States","must_see":"2"},
-            {"band":"Bone Weapon","day":"Friday May 22, 2026","stage":"Angels Rock Bar","genre":"Death/Doom","location":"United States","must_see":"3"},
-            {"band":"Withering Soul","day":"Friday May 22, 2026","stage":"Angels Rock Bar","genre":"Black/Gothic/Melodic Black","location":"United States","must_see":"2"},
-            {"band":"Kreator Deep Cuts","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash","location":"Germany","must_see":"3"},
-            {"band":"Destruction Infernal Overkill","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash","location":"Germany","must_see":"3"},
-            {"band":"Mortician","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Brutal Death","location":"United States","must_see":"1"},
-            {"band":"Pig Destroyer Prowler in the Yard","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Grindcore","location":"United States","must_see":"1"},
-            {"band":"Whiplash","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Speed/Thrash","location":"United States","must_see":"3"},
-            {"band":"Macabre","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"","location":"","must_see":""},
-            {"band":"Warbringer","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash Metal","location":"United States","must_see":"3"},
-            {"band":"Torture Rack","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"","location":"","must_see":""},
-            {"band":"1914","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Blackened Death/Doom","location":"Ukraine","must_see":"1"},
-            {"band":"Hellbutcher","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Sweden","must_see":"2"},
-            {"band":"Havukruunu","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Pagan Black Metal","location":"Finland","must_see":"0"},
-            {"band":"Acheron","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Death/Black Metal","location":"United States","must_see":"1"},
-            {"band":"Sardonic Witchery","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Portugal","must_see":"2"},
-            {"band":"Poltergeist","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Black Metal/Noise","location":"United States","must_see":"1"},
-            {"band":"Rotten Sound Murderworks/Exit","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Grindcore","location":"Finland","must_see":"2"},
-            {"band":"Miasmatic Necrosis","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Goregrind","location":"United States","must_see":"0"},
-            {"band":"Anatomia","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death/Doom","location":"Japan","must_see":"2"},
-            {"band":"Soil of Ignorance","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Grindcore","location":"Canada","must_see":"2"},
-            {"band":"Mellow Harsher","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"","location":"","must_see":""},
-            {"band":"Ossuary","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death Metal","location":"United States","must_see":"3"},
-            {"band":"Terror Corpse","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death Metal/Grindcore","location":"United States","must_see":"3"},
-            {"band":"Gestation","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Goregrind","location":"United States","must_see":"2"},
-            {"band":"Dead Void","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death/Doom","location":"Denmark","must_see":"2"},
-            {"band":"Laceration","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"Death/Thrash","location":"United States","must_see":"3"},
-            {"band":"Glorious Depravity","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"","location":"","must_see":""},
-            {"band":"Desolus","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"Black/Thrash","location":"United States","must_see":"2"},
-            {"band":"Atavistic Decay","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"Death/Doom","location":"United States","must_see":"3"},
-            {"band":"Sarcófago performed by Gerald Incubus Minelli and the Laws","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Black/Thrash/Death","location":"Brazil","must_see":"1"},
-            {"band":"Grave Old School Grave and Corpse","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"Sweden","must_see":"3"},
-            {"band":"Death Angel Act III","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash","location":"United States","must_see":"0"},
-            {"band":"Dying Fetus Old school set - First 3 Albums","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Brutal Death/Grindcore","location":"United States","must_see":"2"},
-            {"band":"Cancer Death Shall Rise","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death/Thrash","location":"United Kingdom","must_see":"3"},
-            {"band":"Blood Red Throne","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"Norway","must_see":"2"},
-            {"band":"Unmerciful","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Brutal Death Metal","location":"United States","must_see":"3"},
-            {"band":"Chaotian","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"Denmark","must_see":"3"},
-            {"band":"Batushka","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Poland","must_see":"0"},
-            {"band":"...And Oceans","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Symphonic Black Metal","location":"Finland","must_see":"1"},
-            {"band":"StarGazer","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Avant-Garde Black/Death","location":"Australia","must_see":"1"},
-            {"band":"Wrathprayer","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black/Death","location":"Chile","must_see":"2"},
-            {"band":"Antichrist Siege Machine","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black/Death","location":"United States","must_see":"2"},
-            {"band":"Aberration","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black/Death","location":"United States","must_see":"2"},
-            {"band":"Cephalic Carnage Old school set - First 3 albums","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Technical Grindcore/Death","location":"United States","must_see":"2"},
-            {"band":"Sex Prisoner","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"","location":"","must_see":""},
-            {"band":"Houkago Grind Time","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Goregrind","location":"United States","must_see":"1"},
-            {"band":"Slimelord","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Death/Doom","location":"United Kingdom","must_see":"2"},
-            {"band":"!T.O.O.H.!","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Progressive Death/Grindcore","location":"Czechia","must_see":"2"},
-            {"band":"Aftermath","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"","location":"","must_see":""},
-            {"band":"Excrescence","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"2"},
-            {"band":"Hemorrhoid","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Death/Grindcore","location":"United States","must_see":"2"},
-            {"band":"Tómarúm","day":"Sunday May 24, 2026","stage":"Angels Rock Bar","genre":"Progressive Black Metal","location":"United States","must_see":"1"},
-            {"band":"Gudsforladt","day":"Sunday May 24, 2026","stage":"Angels Rock Bar","genre":"Black Metal","location":"United States","must_see":"1"},
-            {"band":"Cemetery Moon","day":"Sunday May 24, 2026","stage":"Angels Rock Bar","genre":"Black Metal","location":"United States","must_see":"1"}
+            {"band":"Napalm Death","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Hardcore punk (early); Grindcore/Death Metal (later)","location":"United Kingdom","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Napalm_Death/219","notes":""},
+            {"band":"Repulsion","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Grindcore/Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Repulsion/1120","notes":""},
+            {"band":"Sinister","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Death Metal","location":"Netherlands","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Sinister/998","notes":"Lovecraftian Themes"},
+            {"band":"Monstrosity","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Monstrosity/893","notes":""},
+            {"band":"Organ Dealer","day":"Official Pre-Fest","stage":"Nevermore Hall","genre":"Grindcore","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Organ_Dealer/3540386273","notes":""},
+            {"band":"Solitude Aeturnus","day":"Thursday May 21, 2026","stage":"Power Plant Live","genre":"Epic Doom Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Solitude_Aeturnus/256","notes":""},
+            {"band":"Novembers Doom","day":"Thursday May 21, 2026","stage":"Power Plant Live","genre":"Melodic Doom/Death Metal","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Novembers_Doom/288","notes":"Nephilim Grove is a killer song. Album art"},
+            {"band":"Windhand","day":"Thursday May 21, 2026","stage":"Power Plant Live","genre":"Stoner/Doom Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Windhand/3540313433","notes":"Album art (Soma)"},
+            {"band":"Bongzilla","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Sludge/Doom/Stoner","location":"","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Bongzilla/6782","notes":"666lb. Bongsession"},
+            {"band":"Rwake","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Sludge/Doom/Stoner","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Rwake/9299","notes":""},
+            {"band":"Avernus","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Sludge/Death/Gothic Metal","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Avernus/649","notes":"Booty Shakeable"},
+            {"band":"Lair of the Minotaur","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Thrash/Doom/Sludge Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Lair_of_the_Minotaur/21849","notes":""},
+            {"band":"Black Lung","day":"Thursday May 21, 2026","stage":"Nevermore Hall","genre":"Psychedlic Doom","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Black_Lung/3540411086","notes":""},
+            {"band":"Torsofuck","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Slam/Brutal Death","location":"Finland","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Torsofuck/7390","notes":"ping pong ping pong ping pong"},
+            {"band":"Putridity","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"Italy","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Putridity/92948","notes":""},
+            {"band":"Cephalotripsy","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Slam/Brutal Death","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Cephalotripsy/60559","notes":"filthy sloppy ass snare drum noise, ping ping vomit"},
+            {"band":"Condemned","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Condemned/60495","notes":""},
+            {"band":"Emasculator","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"International","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Emasculator/3540509792","notes":"All ladies band"},
+            {"band":"Cerebral Hemorrhage","day":"Thursday May 21, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Cerebral_Hemorrhage/3521","notes":""},
+            {"band":"Old Man's Child","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Symphonic/Melodic Black Metal","location":"Norway","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Old_Man%27s_Child/362","notes":""},
+            {"band":"Rotting Christ 1989-1995","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Melodic Black Metal, Gothic Metal","location":"Greece","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Rotting_Christ/314","notes":""},
+            {"band":"The Crown","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Melodic Death/Thrash Metal","location":"Sweden","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/The_Crown/132","notes":""},
+            {"band":"Wolfheart","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Melodic Death Metal","location":"Finland","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Wolfheart/3540371106","notes":""},
+            {"band":"God Dethroned 35th Anniversary","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Blackened Death Metal","location":"Netherlands","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/God_Dethroned/242","notes":"Christian metal"},
+            {"band":"Cryptic Shift","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Technical Thrash/Death Metal","location":"United Kingdom","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Cryptic_Shift/3540383275","notes":""},
+            {"band":"Witch Vomit","day":"Friday May 22, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Witch_Vomit/3540363162","notes":""},
+            {"band":"Oranssi Pazuzu","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Psychedlic Black Metal","location":"Finland","must_see":"0","metal_archives":"https://www.metal-archives.com/bands/Oranssi_Pazuzu/3540279710","notes":""},
+            {"band":"Der Weg einer Freiheit","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Germany","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Der_Weg_einer_Freiheit/3540275159","notes":""},
+            {"band":"Wayfarer","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Missing Info: Likely Black Metal","location":"","must_see":"3","metal_archives":"","notes":"Couldn't find information at the time"},
+            {"band":"Pan-Amerikan Native Front","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Pan-Amerikan_Native_Front/3540417829","notes":""},
+            {"band":"Lömsk","day":"Friday May 22, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Sweden","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/L%C3%B6msk/3540553520","notes":""},
+            {"band":"Lividity","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Lividity/1173","notes":""},
+            {"band":"To Violently Vomit She Lay Gutted (Disgorge)","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Disgorge/326","notes":""},
+            {"band":"Rottrevore","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Rottrevore/9637","notes":""},
+            {"band":"Necrofier","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Melodic Death Metal","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Necrofier/3540447967","notes":""},
+            {"band":"Diabolic Oath","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Black/Death Metal","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Diabolic_Oath/3540439298","notes":""},
+            {"band":"Melting Rot","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Grindcore","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Melting_Rot/3540432264","notes":""},
+            {"band":"Grave Infestation","day":"Friday May 22, 2026","stage":"Soundstage","genre":"Death Metal","location":"Canada","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Grave_Infestation/3540448876","notes":""},
+            {"band":"Tithe","day":"Friday May 22, 2026","stage":"Angels Rock Bar","genre":"Death/Doom/Grindcore","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Tithe/3540426059","notes":""},
+            {"band":"Bone Weapon","day":"Friday May 22, 2026","stage":"Angels Rock Bar","genre":"Death/Doom","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Bone_Weapon/3540520043","notes":""},
+            {"band":"Withering Soul","day":"Friday May 22, 2026","stage":"Angels Rock Bar","genre":"Black/Gothic/Melodic Black","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Withering_Soul/12506","notes":""},
+            {"band":"Kreator Deep Cuts","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash","location":"Germany","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Kreator/157","notes":""},
+            {"band":"Destruction Infernal Overkill","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash","location":"Germany","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Destruction/155","notes":""},
+            {"band":"Mortician","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Brutal Death","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Mortician/350","notes":""},
+            {"band":"Pig Destroyer Prowler in the Yard","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Grindcore","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Pig_Destroyer/799","notes":""},
+            {"band":"Whiplash","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Speed/Thrash","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Whiplash/310","notes":""},
+            {"band":"Macabre","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"","location":"","must_see":"","metal_archives":"","notes":"Couldn't find information at the time"},
+            {"band":"Warbringer","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Warbringer/53989","notes":""},
+            {"band":"Torture Rack","day":"Saturday May 23, 2026","stage":"Market Place/Power Plant Live","genre":"","location":"","must_see":"","metal_archives":"","notes":"Couldn't find information at the time"},
+            {"band":"1914","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Blackened Death/Doom","location":"Ukraine","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/1914/3540396156","notes":""},
+            {"band":"Hellbutcher","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Sweden","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Hellbutcher/3540518618","notes":""},
+            {"band":"Havukruunu","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Pagan Black Metal","location":"Finland","must_see":"0","metal_archives":"https://www.metal-archives.com/bands/Havukruunu/3540390272","notes":""},
+            {"band":"Acheron","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Death/Black Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Acheron/123","notes":""},
+            {"band":"Sardonic Witchery","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Portugal","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Sardonic_Witchery/3540357052","notes":""},
+            {"band":"Poltergeist","day":"Saturday May 23, 2026","stage":"Nevermore Hall","genre":"Black Metal/Noise","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Poltergeist/3540530326","notes":""},
+            {"band":"Rotten Sound Murderworks/Exit","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Grindcore","location":"Finland","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Rotten_Sound/2927","notes":""},
+            {"band":"Miasmatic Necrosis","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Goregrind","location":"United States","must_see":"0","metal_archives":"https://www.metal-archives.com/bands/Miasmatic_Necrosis/3540476223","notes":"AxBx's Pal"},
+            {"band":"Anatomia","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death/Doom","location":"Japan","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Anatomia/49197","notes":"Gurgly synth"},
+            {"band":"Soil of Ignorance","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Grindcore","location":"Canada","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Soil_of_Ignorance/3540339875","notes":""},
+            {"band":"Mellow Harsher","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"","location":"","must_see":"","metal_archives":"","notes":"Couldn't find information at the time"},
+            {"band":"Ossuary","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Ossuary/3540400806","notes":""},
+            {"band":"Terror Corpse","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death Metal/Grindcore","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Terror_Corpse/3540560360","notes":""},
+            {"band":"Gestation","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Goregrind","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Gestation/3540533138","notes":""},
+            {"band":"Dead Void","day":"Saturday May 23, 2026","stage":"Soundstage","genre":"Death/Doom","location":"Denmark","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Dead_Void/3540425292","notes":"slow death"},
+            {"band":"Laceration","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"Death/Thrash","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Laceration/116152","notes":""},
+            {"band":"Glorious Depravity","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"","location":"","must_see":"","metal_archives":"","notes":"Couldn't find information at the time"},
+            {"band":"Desolus","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"Black/Thrash","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Desolus/3540544099","notes":""},
+            {"band":"Atavistic Decay","day":"Saturday May 23, 2026","stage":"Angels Rock Bar","genre":"Death/Doom","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Atavistic_Decay/3540536982","notes":""},
+            {"band":"Sarcófago performed by Gerald \"Incubus\" Minelli & the Laws","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Black/Thrash/Death","location":"Brazil","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Sarc%C3%B3fago/2061","notes":""},
+            {"band":"Grave Old School Grave & Corpse","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"Sweden","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Grave/1020","notes":""},
+            {"band":"Death Angel Act III","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Thrash","location":"United States","must_see":"0","metal_archives":"https://www.metal-archives.com/bands/Death_Angel/179","notes":"Will fucking Carroll"},
+            {"band":"Dying Fetus Old school set - First 3 Albums","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Brutal Death/Grindcore","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Dying_Fetus/45","notes":""},
+            {"band":"Cancer Death Shall Rise","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death/Thrash","location":"United Kingdom","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Cancer/695","notes":""},
+            {"band":"Blood Red Throne","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"Norway","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Blood_Red_Throne/808","notes":"Probably worth seeing if no conflicts, riffs riffs riffs."},
+            {"band":"Unmerciful","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Brutal Death Metal","location":"United States","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Unmerciful/18384","notes":""},
+            {"band":"Chaotian","day":"Sunday May 24, 2026","stage":"Market Place/Power Plant Live","genre":"Death Metal","location":"Denmark","must_see":"3","metal_archives":"https://www.metal-archives.com/bands/Chaotian/3540441069","notes":""},
+            {"band":"Batushka","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black Metal","location":"Poland","must_see":"0","metal_archives":"https://www.metal-archives.com/bands/%D0%91%D0%B0%D1%82%D1%8E%D1%88%D0%BA%D0%B0/3540404077","notes":"WHICH GOD DAMN BATUSHKA WHY DID THEY DO THIS TO US"},
+            {"band":"...And Oceans","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Symphonic Black Metal","location":"Finland","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/...and_Oceans/231","notes":""},
+            {"band":"StarGazer","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Avant-Garde Black/Death","location":"Australia","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/StarGazer/2942","notes":""},
+            {"band":"Wrathprayer","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black/Death","location":"Chile","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Wrathprayer/3540281226","notes":"Blackened Death, pretty good"},
+            {"band":"Antichrist Siege Machine","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black/Death","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Antichrist_Siege_Machine/3540426608","notes":""},
+            {"band":"Aberration","day":"Sunday May 24, 2026","stage":"Nevermore Hall","genre":"Black/Death","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Aberration/3540480783","notes":"pretty sick brutal sludge"},
+            {"band":"Cephalic Carnage Old school set - First 3 albums","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Technical Grindcore/Death","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Cephalic_Carnage/910","notes":""},
+            {"band":"Sex Prisoner","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"","location":"","must_see":"","metal_archives":"","notes":""},
+            {"band":"Houkago Grind Time","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Goregrind","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Houkago_Grind_Time/3540457667","notes":"weeb time"},
+            {"band":"Slimelord","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Death/Doom","location":"United Kingdom","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Slimelord/3540454713","notes":""},
+            {"band":"!T.O.O.H.!","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Progressive Death/Grindcore","location":"Czechia","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/%21T.O.O.H.%21/16265","notes":""},
+            {"band":"Aftermath","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"","location":"","must_see":"","metal_archives":"","notes":"Couldn't find information at the time"},
+            {"band":"Excrescence","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Brutal Death Metal","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Excrescence/3540470539","notes":"PING PING PING PING"},
+            {"band":"Hemorrhoid","day":"Sunday May 24, 2026","stage":"Soundstage","genre":"Death/Grindcore","location":"United States","must_see":"2","metal_archives":"https://www.metal-archives.com/bands/Hemorrhoid/3540519094","notes":""},
+            {"band":"Tómarúm","day":"Sunday May 24, 2026","stage":"Angels Rock Bar","genre":"Progressive Black Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/T%C3%B3mar%C3%BAm/3540449681","notes":"new band check it out"},
+            {"band":"Gudsforladt","day":"Sunday May 24, 2026","stage":"Angels Rock Bar","genre":"Black Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Gudsforladt/3540407963","notes":"new band check it out, RAW black metal"},
+            {"band":"Cemetery Moon","day":"Sunday May 24, 2026","stage":"Angels Rock Bar","genre":"Black Metal","location":"United States","must_see":"1","metal_archives":"https://www.metal-archives.com/bands/Cemetery_Moon/3540524448","notes":"new band check it out"}
         ];
 
         function fuzzyMatch(query, text) {
@@ -404,7 +425,7 @@
             document.getElementById('count').textContent = `Showing ${filtered.length} of ${bandsData.length} bands`;
 
             if (filtered.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" class="empty">No bands found</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="8" class="empty">No bands found</td></tr>';
                 return;
             }
 
@@ -414,6 +435,9 @@
                 else if (band.must_see === '1') rating = '⛧';
                 else if (band.must_see === '2') rating = '✧';
                 
+                const link = band.metal_archives ? `<a href="${band.metal_archives}" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></a>` : '';
+                const notes = band.notes || '';
+                
                 const rowClass = band.must_see === '0' ? 'must-see' : '';
                 return `<tr class="${rowClass}">
                     <td>${band.band}</td>
@@ -422,6 +446,8 @@
                     <td>${band.genre}</td>
                     <td>${band.location}</td>
                     <td class="rating">${rating}</td>
+                    <td class="link">${link}</td>
+                    <td class="notes">${notes}</td>
                 </tr>`;
             }).join('');
 
