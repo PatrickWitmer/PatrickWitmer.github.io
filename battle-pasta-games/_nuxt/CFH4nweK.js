@@ -1,0 +1,1 @@
+import{_ as e,c as s,a as o,o as n}from"./6PaFtFCw.js";const a={},c={class:"max-w-6xl mx-auto px-6 py-24"};function l(m,t){return n(),s("section",c,[...t[0]||(t[0]=[o("h1",{class:"font-heading text-2xl text-gold text-glow-gold leading-loose"},"Community",-1),o("p",{class:"font-body text-muted mt-6"},"Coming soon.",-1)])])}const x=e(a,[["render",l]]);export{x as default};
